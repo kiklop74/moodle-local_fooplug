@@ -49,4 +49,21 @@ foreach ($files as $file) {
     }
 }
 
+// Another way to directly access file.
+$filepath = get_config('local_fooplug', 'myimage');
+if ($filepath) {
+    $file = $fs->get_file($PAGE->context->id, 'local_fooplug', 'filearea', 0, dirname($filepath), basename($filepath));
+    if ($file) {
+        $url = moodle_url::make_pluginfile_url(
+            $file->get_contextid(),
+            $file->get_component(),
+            $file->get_filearea(),
+            $file->get_itemid(),
+            $file->get_filepath(),
+            $file->get_filename()
+        );
+        echo html_writer::img($url->out(false), 'This is my image!!!');
+    }
+}
+
 echo $OUTPUT->footer();

@@ -49,5 +49,4 @@ foreach ($files as $file) {
     }
 }
 
-
 echo $OUTPUT->footer();

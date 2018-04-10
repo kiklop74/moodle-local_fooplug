@@ -34,6 +34,7 @@ function local_fooplug_check_env(environment_results $result) {
     // First test.
     $result->setStatus(false);
     $result->setInfo('local_fooplug_check_env');
+    $result->setFeedbackStr(array('checkmsg', 'local_fooplug'));
     $result->setErrorCode(101);
     return $result;
 }

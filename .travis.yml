@@ -1,0 +1,48 @@
+dist: precise
+
+sudo: true
+
+language: php
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+services:
+  - mysql
+
+env:
+  global:
+    - DB=mysqli
+    - MOODLE_CI_VER=1
+
+matrix:
+ include:
+  - php: 5.4
+    env: MOODLE_BRANCH=MOODLE_29_STABLE
+  - php: 5.4
+    env: MOODLE_BRANCH=MOODLE_30_STABLE
+  - php: 5.4
+    env: MOODLE_BRANCH=MOODLE_31_STABLE
+  - php: 5.5
+    env: MOODLE_BRANCH=MOODLE_29_STABLE
+  - php: 5.5
+    env: MOODLE_BRANCH=MOODLE_30_STABLE
+  - php: 5.5
+    env: MOODLE_BRANCH=MOODLE_31_STABLE
+
+before_install:
+  - phpenv config-rm xdebug.ini
+  - cd ../..
+  - composer selfupdate
+  - composer create-project -n --no-dev --prefer-dist moodlerooms/moodle-plugin-ci ci ^${MOODLE_CI_VER}
+  - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
+
+install:
+  - moodle-plugin-ci install
+
+script:
+  - moodle-plugin-ci validate
+  - moodle-plugin-ci phplint
+  - moodle-plugin-ci codechecker
+  - moodle-plugin-ci phpunit

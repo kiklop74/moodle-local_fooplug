@@ -3,7 +3,7 @@
     <PLUGIN name="local_fooplug">
         <PHP version="5.6" level="required" />
         <CUSTOM_CHECKS>
-            <CUSTOM_CHECK file="local_fooplug/environmentchecks.php" function="local_fooplug_check" level="required">
+            <CUSTOM_CHECK file="local_fooplug/environmentchecks.php" function="local_fooplug_check_env" level="required">
                 <FEEDBACK>
                     <ON_CHECK message="checkmsg" plugin="local_fooplug" />
                 </FEEDBACK>

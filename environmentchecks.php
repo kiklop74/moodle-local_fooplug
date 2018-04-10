@@ -31,6 +31,7 @@ require_once($CFG->libdir.'/environmentlib.php');
  * @return environment_results
  */
 function local_fooplug_check(environment_results $result) {
+    // First test.
     $result->setStatus(false);
     $result->setInfo('local_fooplug_check');
     $result->setErrorCode(101);

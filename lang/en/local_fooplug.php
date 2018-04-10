@@ -28,5 +28,5 @@ $string['pluginname'] = 'Example plugin';
 $string['settingstitle'] = 'Example plugin settings';
 $string['imagefile'] = 'My Image';
 $string['imagefile_desc'] = 'Uploiad and store image file';
-$string['checkmsg'] = 'Checking';
+$string['checkmsgok'] = 'Everything OK!';
 $string['checkerrormsg'] = 'Checking Failed!';

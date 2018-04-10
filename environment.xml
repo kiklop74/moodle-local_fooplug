@@ -3,10 +3,10 @@
     <PLUGIN name="local_fooplug">
         <PHP version="5.6" level="required" />
         <CUSTOM_CHECKS>
-            <CUSTOM_CHECK file="local_fooplug/environmentchecks.php" function="local_fooplug_check_env" level="required">
+            <CUSTOM_CHECK file="local/fooplug/environmentchecks.php" function="local_fooplug_check_env" level="required">
                 <FEEDBACK>
-                    <ON_CHECK message="checkmsg" plugin="local_fooplug" />
-                    <ON_ERROR message="checkerrormsg" plugin="local_fooplug" />
+                    <ON_ERROR message="pluginschecktodo" />
+                    <ON_OK    message="confirmed" />
                 </FEEDBACK>
             </CUSTOM_CHECK>
         </CUSTOM_CHECKS>

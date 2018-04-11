@@ -24,9 +24,24 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+function local_fooplug_ci_helper($default) {
+    $result = $default;
+    if (during_initial_install()) {
+        require($CFG->dirroot . '/version.php');
+        $currentbranch = (int)$branch;
+    } else {
+        $currentbranch = (int)$CFG->branch;
+    }
+    if ($currentbranch > 32) {
+        $result = 2088052300;
+    }
+
+    return $result;
+}
+
 /** @var stdClass $plugin */
 $plugin->version   = 2018012500;
-$plugin->requires  = 2016052300; // Requires this Moodle version (3.1.0).
+$plugin->requires  = local_fooplug_ci_helper(2016052300); // Requires this Moodle version (3.1.0).
 $plugin->component = 'local_fooplug';
 $plugin->release   = "1 (Build: {$plugin->version})";
 $plugin->maturity  = MATURITY_STABLE;

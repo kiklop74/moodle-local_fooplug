@@ -1,12 +1,12 @@
-dist: precise
-
-sudo: true
+dist: trusty
+sudo: false
 
 language: php
 
 cache:
   directories:
     - $HOME/.composer/cache
+    - $HOME/.npm
 
 services:
   - mysql
@@ -27,8 +27,9 @@ matrix:
 
 before_install:
   - phpenv config-rm xdebug.ini
+  - nvm install 8.9
+  - nvm use 8.9
   - cd ../..
-  - composer selfupdate
   - composer create-project -n --no-dev --prefer-dist moodlerooms/moodle-plugin-ci ci ^${MOODLE_CI_VER}
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
 
@@ -39,4 +40,5 @@ script:
   - moodle-plugin-ci validate
   - moodle-plugin-ci phplint
   - moodle-plugin-ci codechecker
+  - if [ ${MOODLE_CI_VER} -eq 2 ] ; then moodle-plugin-ci savepoints ; fi
   - moodle-plugin-ci phpunit

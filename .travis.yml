@@ -20,16 +20,10 @@ matrix:
  include:
   - php: 5.4
     env: MOODLE_BRANCH=MOODLE_29_STABLE
-  - php: 5.4
-    env: MOODLE_BRANCH=MOODLE_30_STABLE
-  - php: 5.4
-    env: MOODLE_BRANCH=MOODLE_31_STABLE
-  - php: 5.5
-    env: MOODLE_BRANCH=MOODLE_29_STABLE
-  - php: 5.5
-    env: MOODLE_BRANCH=MOODLE_30_STABLE
   - php: 5.5
     env: MOODLE_BRANCH=MOODLE_31_STABLE
+  - php: 7.0
+    env: MOODLE_BRANCH=MOODLE_33_STABLE MOODLE_CI_VER=2
 
 before_install:
   - phpenv config-rm xdebug.ini

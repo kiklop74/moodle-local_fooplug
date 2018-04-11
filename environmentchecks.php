@@ -24,16 +24,22 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->libdir.'/environmentlib.php');
-
 /**
  * @param  environment_results $result
  * @return environment_results
  */
 function local_fooplug_check_env(environment_results $result) {
+    global $CFG;
     // First test.
-    $result->setStatus(false);
-    $result->setInfo('local_fooplug_check_env');
-    $result->setErrorCode(101);
+    if (during_initial_install()) {
+        require($CFG->dirroot.'/version.php');
+        $currentbranch = (int)$branch;
+    } else {
+        $currentbranch = (int)$CFG->branch;
+    }
+    if ($currentbranch > 32) {
+        $result->setStatus(false);
+        $result->setInfo('local_fooplug_check_env');
+    }
     return $result;
 }
